@@ -2,29 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Compile') {
             steps {
-                sh 'make' (1)
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true (2)
+                withMaven(maven: 'Maven') {
+                    sh 'mvn clean compile'
+                }
             }
         }
     stage('Test') {
             steps {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
-                sh 'make check || true' (1)
-                junit '**/target/*.xml' (2)
+                withMaven(maven: 'Maven') {
+                    sh 'mvn test'
+                }
             }
         }
     stage('Deploy') {
-            when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' (1)
-              }
-            }
             steps {
-                sh 'make publish'
+                withMaven(maven: 'Maven') {
+                    sh 'mvn deploy'
+                }
             }
         }
 
