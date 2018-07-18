@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.formac</groupId>
   <version>1.0</version>
-  <name>vinay</name>
+  <artifactId>vinay</artifactId>
   <url>http://maven.apache.org</url>
    <distributionManagement>
        <repository>
