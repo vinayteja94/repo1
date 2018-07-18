@@ -7,7 +7,23 @@
   <version>1.0</version>
   <name>test</name>
   <url>http://maven.apache.org</url>
-  <dependencies>
+ <distributionManagement>
+     <repository>
+         <id>releases</id>
+             <url>http://192.168.126.129:8181/nexus-2.14.8-01/content/repositories/releases/</url>
+                 </repository>
+                     <snapshotRepository>
+                         <id>snapshots</id>
+                             <url>http://192.168.126.129:8181/nexus-2.14.8-01/content/repositories/snapshots</url>
+                                 </snapshotRepository>
+                                   </distributionManagement>
+
+
+<scm>
+        <connection>scm:git:ssh://git@github.com:vinayteja94/repo1.git</connection>
+                <developerConnection>scm:git:ssh://git@github.com:vinayteja94/repo1.git</developerConnection>
+                    </scm>
+ <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
